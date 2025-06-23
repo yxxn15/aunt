@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>생일 초대장</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 닫힌 봉투 -->
+    <img id="closedEnvelope" src="letter.png" alt="닫힌 편지봉투" />
+
+    <!-- 열린 봉투 + 종이 -->
+    <div id="openedContainer">
+  <img id="openEnvelopeImg" src="openletter.png" alt="열린 편지봉투" class="opened-envelope" />
+  <div id="birthdayPaper">
+    <div class="initial-text">Happy<br> Birthday! 🎂</div>
+    <div class="inner-content">
+      <img src="photo1.png" alt="이모 사진" class="imo-pic" />
+      <div class="front-text">선희이모<br/>Happy Birthday! 🎂</div>
+      <button id="nextButton">다음</button>
+    </div>
+  </div>
+</div>
+
+    <!-- 초대장 본문 -->
+    <div id="invitation">
+      <h3>🎉<strong class="highlight">선희이모</strong>를<br>생일 파티에 초대합니다🎉</h3>
+      <p>📅 2025년 7월 12일 (토) 오후 6시<br>🏠 장소: 우리 집<br>🥳 준비물: 즐길 준비가 된 마음</p>
+      <img src="house.png" alt="지도 이미지" class="map" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
