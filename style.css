@@ -101,7 +101,8 @@ body {
       border-radius: 6px;
       cursor: pointer;
     }
-    #invitation {
+
+  #invitation {
   display: none;
   position: absolute;
   top: 50%;
