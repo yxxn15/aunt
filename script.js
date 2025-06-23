@@ -40,7 +40,7 @@ setTimeout(() => {
   document.querySelector(".initial-text").style.display = "none";
   const paper = document.getElementById("birthdayPaper");
   paper.classList.add("reveal");  // ✅ 반드시 추가
-}, 5700);
+}, 4700);
 });
 
 // 다음 버튼 클릭 시 초대장 본문으로 전환

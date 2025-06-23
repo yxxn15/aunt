@@ -53,11 +53,11 @@ body {
       z-index: 2;
     }
     #birthdayPaper.show {
-  transform: translate(-50%, -120%) scale(1);
+  transform: translate(-50%, -120%) scale(2);
   opacity: 1;
 }
 #birthdayPaper.expand {
-   transform: translate(-50%, -50%) scale(4);
+   transform: translate(-50%, -50%) scale(3);
   top: 50%;       /* 중심 기준으로 위치 재조정 */
   bottom: auto;   /* bottom 기준 제거 */
   transition: transform 1s ease, top 1s ease;
