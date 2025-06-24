@@ -182,7 +182,7 @@ img {
   width: 80%;
   max-width: 200px;
   max-height: 120px;
-  margin-top: 1px;
+  margin-top: 16px;
   border-radius: 8px;
 }
 
@@ -195,6 +195,17 @@ img {
   font-size: 14px;
   font-weight: bold;
 }
+/* ── .show 토글용 (desktop & mobile 공통) ── */
+/* 열린 컨테이너 */
+#openedContainer.show {
+  display: block !important;
+}
+
+/* 초대장 */
+#invitation.show {
+  display: block !important;
+  opacity: 1 !important;
+}
 
 /* ── 모바일 반응형 (≤480px) ── */
 @media (max-width: 480px) {
@@ -203,5 +214,17 @@ img {
   #openEnvelopeImg {
     width: 150px;
     transform: translate(-50%, -50%) scale(1.8);
+  }
+  #secondPaper .rolling-title {
+    color: #e3745c !important;
+    font-size: 1.125rem !important;
+    font-weight: bold !important;
+  }
+
+  /* ── 본문 텍스트 (검은색·작은 폰트) ── */
+  #secondPaper .rolling-text {
+    color: #000 !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
   }
 }

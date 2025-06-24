@@ -16,6 +16,7 @@ const second   = document.getElementById("secondPaper");
 // “다음” 버튼 요소 저장 (초대장으로 넘어갈 버튼)  
 const nextBtn  = document.getElementById("nextButton");  
 
+const invitation = document.getElementById("invitation");
 
 
 // 닫힌 봉투를 클릭했을 때 실행될 코드  
@@ -35,13 +36,13 @@ closed.addEventListener("click", () => {
   }, 5300);
 });
 
-
-
 // “다음” 버튼을 클릭했을 때 실행될 코드  
 nextBtn.addEventListener("click", () => {
-  opened.style.display = "none";    // 1) 열린 컨테이너(종이들) 숨김
-  const invitation = document.getElementById("invitation");  
-  invitation.style.display = "block"; // 2) 최종 초대장 컨테이너 표시
-  setTimeout(() => invitation.classList.add("show"), 100);  
-  // 3) 0.1초 뒤 .show 붙여 초대장 페이드인
+  // 열린 컨테이너와 종이들 숨김
+  opened.classList.remove("show");
+  first.classList.remove("show");
+  second.classList.remove("show");
+
+  // 초대장 노출
+  invitation.classList.add("show");
 });
