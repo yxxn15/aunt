@@ -202,8 +202,62 @@ body {
 }
 #invitation .map {
   width: 80%;                                     /* 지도 이미지 너비 100% */
-  max-height: 160px;
+  max-height: 120px;
   max-width: 200px;                                /* 최대 너비 300px */
   margin-top: 1px;
   border-radius: 8px;                                /* 위쪽 여백 10px */
 }
+/* 1) 컨테이너 반응형 폭 조정 */
+.container {
+  width: 90vw;       /* 뷰포트 폭의 90% */
+  max-width: 400px;  /* 데스크탑에서는 최대 400px */
+}
+
+/* 2) 모든 이미지 최대 너비 제한 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 3) 모바일 전용 스타일 (화면 폭 480px 이하) */
+@media (max-width: 480px) {
+  /* — 봉투 크기 줄이기 — */
+  #closedEnvelope,
+  #openEnvelopeImg {
+    width: 150px;
+    transform: translate(-50%, -50%) scale(1.8);
+  }
+}
+  /* — 종이/초대장 너비를 컨테이너에 맞추기 — */
+  #firstPaper,
+  #secondPaper,
+  #invitation {
+    width: 100%;           /* 컨테이너 폭만큼 꽉 채움 */
+    padding: 12px;         /* 패딩 조금 줄임 */
+    box-sizing: border-box;
+  }
+
+  /* — 폰트 크기 조정 — */
+  #invitation h3 {
+    font-size: 1rem;       /* 약 16px */
+    line-height: 1.2;
+  }
+  #invitation p,
+  #secondPaper .rolling-text,
+  .initial-text {
+    font-size: 0.875rem;   /* 약 14px */
+    line-height: 1.3;
+  }
+  #nextButton {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+
+  /* — 종이 애니메이션 위치 보정 — */
+  #firstPaper.show {
+    animation:
+      slideToHeart 1.5s ease-out forwards,
+      scaleCenter  1.2s ease-in   forwards 1.5s,
+      fadeOut      2.0s ease      forwards 3.0s;
+    bottom: 45%;            /* 모바일에서 살짝 더 아래에서 시작 */
+  }
