@@ -50,7 +50,6 @@ img {
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 등장 시 80% 크기, 중앙 정렬 */
   transform: translate(-50%, -50%) scale(0.8);
   width: 100%;
   max-width: 280px;
@@ -61,18 +60,15 @@ img {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   z-index: 3;
 }
-/* 내부 콘텐츠 페이드인 */
 #firstPaper .paper-content {
   opacity: 0;
-  transition: opacity 0.4s ease 2s; /* 2초 지연 */
+  transition: opacity 0.4s ease 2s;
 }
-/* 사진 크기 */
 #firstPaper .imo-pic {
   width: 100px;
   border-radius: 10px;
   margin: 0 auto 10px;
 }
-/* 텍스트 컬러 */
 .initial-text {
   color: #E0C07B;
   font-weight: bold;
@@ -119,9 +115,6 @@ img {
   text-align: center;
   z-index: 3;
   opacity: 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 /* 페이드인 */
 @keyframes fadeIn {
@@ -129,9 +122,12 @@ img {
   to   { opacity: 1; }
 }
 #secondPaper.show {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   animation: fadeIn 0.8s ease-out forwards;
   opacity: 1;
-  display: flex;
 }
 #secondPaper .rolling-text {
   font-size: 18px;
@@ -206,7 +202,7 @@ img {
     transform: translate(-50%,-50%) scale(1.8);
   }
 
-  /* 첫·두 번째 페이퍼 flow layout */
+  /* 첫·두 번째 페이퍼 flow layout, show 시에만 노출 */
   #firstPaper,
   #secondPaper {
     position: static !important;
@@ -225,10 +221,8 @@ img {
     display: block !important;
   }
 
-  /* 열린 컨테이너는 항상 숨김 */
-  #openedContainer {
-    display: none !important;
-  }
+  /* 열린 컨테이너 숨김 해제 (필요시 제거) */
+  /* #openedContainer { display: none !important; } */
 
   /* 초대장도 show 시에만 노출 */
   #invitation {
