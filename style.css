@@ -211,11 +211,13 @@ img {
     text-align: center;
   }
 
-  /* invitation 은 기본 display:none; 그대로 두고 .show 시에만 보이게 */
-  #invitation {
-    display: none !important;  
-  }
-  #invitation.show {
-    display: block !important;
-  }
+  /* invitation 은 .show 없이는 절대 보이지 않게 */
+#invitation {
+  display: none !important;
+}
+/* .show 붙어야만 보이게 */
+#invitation.show {
+  display: block !important;
+}
+
 }
