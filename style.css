@@ -206,11 +206,12 @@ img {
   }
 
   /* 3) 첫·두 번째 페이퍼 flow layout, 기본 숨김 */
-  #firstPaper,
+   #firstPaper,
   #secondPaper {
-    position: static !important;
+    position: relative !important;    /* static → relative */
+    z-index: 3 !important;            /* envelope z-index:2 보다 위 */
     transform: none !important;
-    display: none !important;       /* 기본 숨김 */
+    display: block !important;        /* show 여부는 JS로 토글 */
     width: 100% !important;
     padding: 12px !important;
     margin: 16px auto !important;
@@ -218,7 +219,6 @@ img {
     animation: none !important;
     opacity: 1 !important;
     text-align: center;
-    z-index: 999 !important;
   }
   /* show 클래스가 붙으면 block */
   #firstPaper.show,
