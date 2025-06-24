@@ -74,12 +74,12 @@ img {
 
 /* 첫 번째 종이 애니메이션 */
 @keyframes slideToHeart {
-  from { transform: translate(-50%,-50%) scale(0.8); }
-  to   { transform: translate(-50%,-90%) scale(0.8); }
+  from { transform: translate(-50%,-70%) scale(0.8); }
+  to   { transform: translate(-50%,-110%) scale(0.8); }
 }
 @keyframes scaleCenter {
-  from { transform: translate(-50%,-50%) scale(0.8); }
-  to   { transform: translate(-50%,50%)  scale(1.4); }
+  from { transform: translate(-50%,-110%) scale(0.8); }
+  to   { transform: translate(-50%,-50%)  scale(1.25); }
 }
 @keyframes fadeOut {
   from { opacity: 1; }
@@ -176,7 +176,7 @@ img {
   width: 80%;
   max-width: 200px;
   max-height: 120px;
-  margin-top: 8px;
+  margin-top: 16px;
   border-radius: 8px;
 }
 
