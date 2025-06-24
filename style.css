@@ -114,8 +114,6 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #000;
-  font-size: 14px;
 }
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -128,9 +126,17 @@ img {
 
 /* 메시지 + 버튼 */
 #secondPaper .rolling-text {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
-  color: #e3745c;
+  color: #000000;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+#secondPaper .rolling-title {
+  display: block;               /* 줄 바꿈 보장 */
+  color: #e3745c;               /* 기존 코랄색 */
+  font-size: 25px;          /* 약 18px */
+  font-weight: bold;
   margin-bottom: 12px;
 }
 #nextButton {
