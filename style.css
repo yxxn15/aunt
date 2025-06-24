@@ -205,6 +205,13 @@ img {
     width: 150px;
     transform: translate(-50%,-50%) scale(1.8);
   }
+#firstPaper,
+#secondPaper,
+#invitation {
+  /* 임시 디버깅용 */
+  background: rgba(255, 0, 0, 0.3) !important;
+  border: 2px dashed blue !important;
+}
 
   /* 첫·두 번째 페이퍼 흐름 모드, show 시에만 노출 */
   #firstPaper,
