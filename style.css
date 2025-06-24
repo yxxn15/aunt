@@ -104,7 +104,7 @@ img {
   left: 50%;
   transform: translate(-50%,-50%);
   width: 280px;
-  height: 190px;
+  min-height: 260px;
   padding: 20px;
   background: #fff9f3;
   border-radius: 16px;
@@ -114,6 +114,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #000;
+  font-size: 14px;
 }
 @keyframes fadeIn {
   from { opacity: 0; }
