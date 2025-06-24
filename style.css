@@ -1,211 +1,209 @@
+/* ─ 기본 레이아웃 ───────────────────────────────────────── */
+/* HTML 문서의 body에 대한 기본 스타일을 설정합니다. */
 body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #fff9f3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-    #closedEnvelope {
-      width: 400px;
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-    }
-    #openedContainer {
-      display: none;
-      position: relative;
-    }
-    .opened-envelope {
-      width: 400px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-    }
-    #birthdayPaper {
-  position: absolute;
-  bottom: -10%; /* ✅ 음수로 수정: 더 위쪽에서 출발 */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 150px;
-  height: 150px;
-      background-color: #fff9f3;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      opacity: 0;
-      transition: transform 1.5s ease, opacity 1.5s ease;
-      z-index: 2;
-    }
-    #birthdayPaper.show {
-  transform: translate(-50%, -120%) scale(2);
-  opacity: 1;
+  margin: 0;                                       /* 브라우저 기본 여백 제거 */
+  font-family: 'Arial', sans-serif;                /* 기본 폰트를 Arial로 지정 */
+  background-color: #fff9f3;                       /* 페이지 배경색 설정 */
+  display: flex;                                   /* Flexbox 레이아웃 사용 */
+  justify-content: center;                         /* 가로 중앙 정렬 */
+  align-items: center;                             /* 세로 중앙 정렬 */
+  height: 100vh;                                   /* 뷰포트 높이를 100%로 설정 */
 }
-#birthdayPaper.expand {
-   transform: translate(-50%, -50%) scale(2.5);
-  top: 50%;       /* 중심 기준으로 위치 재조정 */
-  bottom: auto;   /* bottom 기준 제거 */
-  transition: transform 1s ease, top 1s ease;
+.container {
+  position: relative;                              /* 자식 요소 절대 위치 지정 기준 */
+  width: 100%;                                     /* 가로 너비 100% */
+  max-width: 400px;                                /* 최대 너비 400px로 제한 */
+  text-align: center;                              /* 텍스트 중앙 정렬 */
 }
 
-    .initial-text {
-      font-size: 22px;
-      font-weight: bold;
-      color: #e74c3c;
-      text-align: center;
-    }
-    .inner-content {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    #birthdayPaper.reveal .initial-text {
-      display: none;
-    }
-    #birthdayPaper.reveal .inner-content {
-      display: flex;
-    }
-    .imo-pic {
-      width: 50%;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-    .front-text {
-      font-size: 12px;
-      font-weight: bold;
-      color: #e74c3c;
-    }
-    #nextButton {
-      margin-top: 8px;
-      padding: 2px 8px;
-      font-size: 14px;
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-  #invitation {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2); /* 종이와 동일하게 확대 및 정중앙 */
-  width: 180px;
-  height: 220px;
-  background-color: #fff9f3;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  padding: 20px;
-  text-align: center;
-  z-index: 3;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  opacity: 0;
+/* ─ 봉투 이미지(닫힘/열림) ────────────────────────────────── */
+/* 닫힌 봉투와 열린 봉투 이미지를 동일한 위치와 크기로 설정 */
+#closedEnvelope,
+#openEnvelopeImg {
+  width: 220px;                                    /* 이미지 너비 고정(220px) */
+  position: absolute;                              /* 절대 위치 지정 */
+  top: 50%;                                        /* 부모 기준 세로 중앙 */
+  left: 50%;                                       /* 부모 기준 가로 중앙 */
+  transform: translate(-50%, -50%) scale(2);       /* 중앙 이동 + 2배 확대 */
+  cursor: pointer;                                 /* 마우스 커서 포인터로 변경 */
+  z-index: 2;                                      /* 쌓임 순서 지정(z-index:2) */
 }
 
-#invitation.show {
-  opacity: 1;
+/* ─ 열린 컨테이너 ───────────────────────────────────────── */
+/* 열린 봉투와 종이가 들어가는 컨테이너를 숨긴 상태로 초기화 */
+#openedContainer {
+  display: none;                                   /* 기본적으로 숨김 처리 */
+  position: relative;                              /* 내부 절대 위치 자식 기준 */
 }
 
-    #invitation h3 {
-    font-size: 15px;
-      color: #f99ebe;
-      text-align: center;
-    }
-    #invitation p {
-        font-size: 10px;
-    }
-    #invitation .map {
-      width: 90%;
-      max-width: 100px;
-      margin-top: 8px;
-    }
-    .inner-content {
-  display: none;
+/* ─ 첫 번째 종이 ───────────────────────────────────────── */
+/* 첫 번째 페이퍼(사진+텍스트)를 위한 스타일 */
+#firstPaper {
+  display: none;                                   /* 초기 숨김 처리 */
+  position: absolute;                              /* 절대 위치 지정 */
+  bottom: -50%;                                     /* 부모 바닥에서 50% 위쪽 위치 */
+  left: 50%;                                       /* 부모 기준 가로 중앙 */
+  transform: translate(-50%, -50%) scale(0.8);        /* 가로 중앙 이동 + 0.8배 축소 */
+  width: 200px;                                    /* 종이 너비 200px */
+  padding: 16px;                                   /* 내부 여백 16px */
+  background-color: #fff;                          /* 종이 배경색 흰색 */
+  border: 1px solid #e0e0e0;                       /* 연한 회색 테두리 */
+  border-radius: 12px;                             /* 둥근 모서리(12px) */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);           /* 그림자 효과 */
+  z-index: 3;                                      /* 쌓임 순서(z-index:3) */
+}
+/* 첫 번째 종이 내용(사진+텍스트)의 초기 투명도 및 페이드인 트랜지션 설정 */
+#firstPaper .paper-content {
+  opacity: 0;                                      /* 초기 투명도 0 */
+  transition: opacity 0.4s ease;                   /* 투명도 변화 0.4s ease */
+  transition-delay: 2.0s;                          /* 2초 딜레이 후 시작 */
+}
+/* 첫 번째 종이 안의 사진 크기 조정 */
+#firstPaper .imo-pic {
+  width: 100px;                                    /* 사진 너비 100px */
+  height: auto;                                    /* 비율 유지 자동 높이 */
+  border-radius: 10px;                             /* 테두리 둥글게 */
+  margin-bottom: 10px;                             /* 아래 여백 10px */
+}
+.initial-text {
+  color: #E0C07B;
+}
+/* 첫 번째 종이 애니메이션 키프레임 정의 */
+/* 1) 슬라이드: 하트 위치까지 위로 이동 */
+@keyframes slideToHeart {
+  from { transform: translate(-50%, -20%) scale(0.8); opacity: 1; }
+  to   { transform: translate(-50%, -90%) scale(0.8); opacity: 1; }
+}
+/* 2) 확대: 하트 위치에서 중앙으로 확대 */
+@keyframes scaleCenter {
+  from { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+  to   { transform: translate(-50%, 50%) scale(1.4); opacity: 1; }
+}
+/* 3) 페이드아웃: 확대 후 서서히 사라짐 */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+/* .show 클래스가 붙으면 키프레임 순차 실행 */
+#firstPaper.show {
+  display: block;                                 /* 보이게 변경 */
+  animation:
+    slideToHeart 1.5s ease-out forwards,         /* 0–1.5s: 슬라이드 */
+    scaleCenter  1.2s ease-in   forwards 1.5s,    /* 1.5–2.7s: 확대 */
+    fadeOut      1.5s ease      forwards 3.0s;    /* 3.0–5.0s: 사라짐 */
+}
+/* 애니메이션 후 내용 페이드인 */
+#firstPaper.show .paper-content {
+  opacity: 1;                                      /* 투명도 1로 변경 */
+}
+
+/* ── 두 번째 종이 ───────────────────────────────────────── */
+/* 두 번째 페이퍼(축하 메시지+버튼) 스타일 */
+#secondPaper {
+  display: none;                                   /* 초기 숨김 처리 */
+  position: absolute;                              /* 절대 위치 지정 */
+  top: 55%;                                        /* 부모 기준 세로 55% 위치 */
+  left: 50%;                                       /* 부모 기준 가로 중앙 */
+  transform: translate(-50%, -50%);                /* 중앙 정렬(스케일 없음) */
+  width: 280px; 
+  height: 190px;                                   /* 너비 220px */
+  padding: 20px;                                   /* 내부 여백 20px */
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 1s ease;
+  align-items: center;
+  background-color: #fff9f3;                       /* 연한 배경색 */
+  border-radius: 16px;                             /* 둥근 모서리 */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);           /* 그림자 효과 */
+  text-align: center;                              /* 텍스트 중앙 정렬 */
+  z-index: 3;                                      /* 쌓임 순서(z-index:3) */
+  opacity: 1;                                      /* 즉시 보이도록 투명도 1 */
+  transition: none;                                /* 트랜지션 효과 제거 */
 }
-.highlight {
-  color: #e4165f;  /* 원하는 색상 코드로 변경 가능 */
+/* 1) 페이드인용 키프레임 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-#birthdayPaper.reveal .inner-content {
-  display: flex;
-  opacity: 1;
+/* 2) 초기 상태: 투명 + 숨김 */
+#secondPaper {
+  display: none;      /* 기존 그대로 */
+  opacity: 0;         /* 완전 투명 */
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 14px;
-  }
+/* 3) .show 붙으면 flex + 페이드인 애니메이션 */
+#secondPaper.show {
+  display: flex;                                      /* 기존 flex 설정 유지 */
+  animation: fadeIn 0.8s ease-out forwards;           /* 0.8s 동안 투명→불투명 */
+}
 
-  h1, h2, h3 {
-    font-size: 16px;
-  }
 
-  p {
-    font-size: 14px;
-  }
+/* 두 번째 페이퍼 안 메시지 스타일 */
+#secondPaper .rolling-text {
+  font-size: 18px;                                 /* 텍스트 크기 18px */
+  font-weight: bold;                               /* 굵은 글씨 */
+  color: #e3745c;                                  /* 코랄 계열 텍스트 색 */
+  margin-bottom: 12px;                             /* 아래 여백 12px */
+}
 
-  img {
-    max-width: 90%;
-    height: auto;
-  }
+/* ‘다음’ 버튼 스타일 */
+#nextButton {
+  display: inline-block;                           /* 인라인 블록 */
+  padding: 10px 24px;                              /* 내부 여백 10px/24px */
+  background-color: #e74c3c;                       /* 빨간 계열 배경 */
+  color: #fff;                                     /* 흰색 글자 */
+  font-size: 16px;                                 /* 글자 크기 16px */
+  border: none;                                    /* 테두리 없음 */
+  border-radius: 12px;                             /* 둥근 모서리 */
+  cursor: pointer;                                 /* 마우스 포인터 */
+  margin: 8px 0;
+}
 
-  #invitation h3 {
-    font-size: 14px;
-  }
-
-  .big-button, #nextButton {
-    font-size: 16px;
-    padding: 8px 16px;
-  }
-
-  .front-text {
-    font-size: 16px;
-  }
-
-  #birthdayPaper {
-    width: 80%;
-    padding: 10px;
-  }
-
-  .container {
-    max-width: 90%;
-  }
-
-  #closedEnvelope,
-  .opened-envelope {
-    width: 90%; /* 봉투도 줄이기 */
-  }
-
-  #invitation {
-    transform: translate(-50%, -50%) scale(1.4); /* 너무 확대된 경우 축소 */
-    width: 90%;
-    height: auto;
-  }
-
-  #invitation p {
-    font-size: 12px;
-  }
+/* ─ 최종 초대장 ───────────────────────────────────────── */
+/* 초대장 카드 스타일 */
+#invitation {
+  display: none;                                   /* 초기 숨김 처리 */
+  position: absolute;                              /* 절대 위치 지정 */
+  width: 280px;    /* 원하는 가로 너비 */
+  height: 280px;   /* 원하는 세로 높이 */
+  top: 50%;                                        /* 세로 중앙 */
+  left: 50%;                                       /* 가로 중앙 */
+  transform: translate(-50%, -50%) scale(1.4);     /* 중앙 이동 + 1.4배 확대 */
+  background-color: #fff9f3;                       /* 연한 배경색 */
+  border-radius: 12px;                             /* 둥근 모서리 */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);           /* 은은한 그림자 */
+  padding: 12px;                                   /* 내부 여백 20px */
+  text-align: center;                              /* 텍스트 중앙 정렬 */
+  opacity: 0;                                      /* 초기 투명도 0 */
+  transition: opacity 0.8s ease;                   /* 투명도 변화 0.8s ease */
+  z-index: 4;                                      /* 쌓임 순서(z-index:4) */
+}
+/* .show 클래스가 붙으면 투명도 1로 페이드인 */
+#invitation.show {
+  opacity: 1;                                      /* 투명도 1로 변경 */
+}
+.gradient-text {
+  /* 그라데이션 배경 */
+  background: linear-gradient(90deg, #f865fa, #42a5f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* 글자만 보이도록 투명 처리 */
+  -webkit-text-fill-color: transparent;
+  /* 필요시 폰트 스타일 */
+  font-size: 14px;
+  font-weight: bold;
+}
+#invitation h3 {
+  margin-bottom: 8px;   /* 기존보다 아래 여백 감소 */
+}
+#invitation p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+#invitation .map {
+  width: 80%;                                     /* 지도 이미지 너비 100% */
+  max-height: 160px;
+  max-width: 200px;                                /* 최대 너비 300px */
+  margin-top: 1px;
+  border-radius: 8px;                                /* 위쪽 여백 10px */
 }

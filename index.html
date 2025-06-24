@@ -1,37 +1,63 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <!-- 문자 인코딩 설정 -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- 반응형 뷰포트 설정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 문서 제목 -->
   <title>생일 초대장</title>
+  <!-- 스타일 시트 연결 -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 중앙 정렬용 컨테이너 시작 -->
   <div class="container">
-    <!-- 닫힌 봉투 -->
+    <!-- 1. 닫힌 봉투 -->
     <img id="closedEnvelope" src="letter.png" alt="닫힌 편지봉투" />
 
-    <!-- 열린 봉투 + 종이 -->
+    <!-- 2. 열린 봉투 + 종이들 (초기 hidden) -->
     <div id="openedContainer">
-  <img id="openEnvelopeImg" src="openletter.png" alt="열린 편지봉투" class="opened-envelope" />
-  <div id="birthdayPaper">
-    <div class="initial-text">Happy<br> Birthday! 🎂</div>
-    <div class="inner-content">
-      <img src="photo1.png" alt="이모 사진" class="imo-pic" />
-      <div class="front-text">선희이모<br/>Happy Birthday! 🎂</div>
-      <button id="nextButton">다음</button>
-    </div>
-  </div>
-</div>
+      <!-- 열린 봉투 이미지 -->
+      <img id="openEnvelopeImg" src="openletter.png" alt="열린 봉투" />
 
-    <!-- 초대장 본문 -->
+      <!-- 첫 번째 종이: 사진 + 축하 텍스트 -->
+      <div id="firstPaper">
+        <div class="paper-content">
+          <img src="photo1.png" alt="이모 사진" class="imo-pic" />
+          <div class="initial-text">
+            선희이모<br />Happy Birthday! 🎂
+          </div>
+        </div>
+      </div>
+
+      <!-- 두 번째 종이: 축하 메시지 + 다음 버튼 -->
+      <div id="secondPaper">
+        <div class="paper-content">
+          <div class="rolling-text">롤링페이퍼</div>
+          <button id="nextButton">다음</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 최종 초대장 -->
     <div id="invitation">
-      <h3>🎉<strong class="highlight">선희이모</strong>를<br>생일 파티에 초대합니다🎉</h3>
-      <p>📅 2025년 7월 12일 (토) 오후 6시<br>🏠 장소: 우리 집<br>🥳 준비물: 즐길 준비가 된 마음</p>
+      <h3>
+  🎉<span class="gradient-text">선희이모를 생일 파티에 초대합니다</span>
+  🎉
+</h3>
+
+      <p>
+        📅 2025년 7월 12일 (토) 오후 6시<br />
+        🏠 장소: 우리 집<br />
+        🥳 준비물: 즐길 준비가 된 마음
+      </p>
       <img src="house.png" alt="지도 이미지" class="map" />
     </div>
   </div>
 
+  <!-- 동작 제어 스크립트 연결 -->
   <script src="script.js"></script>
 </body>
 </html>
