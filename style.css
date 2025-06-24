@@ -22,8 +22,6 @@ body {
 img {
   max-width: 100%;
   height: auto;
-  display: block;
-  margin: 0 auto;
 }
 
 /* ── 봉투 이미지 ── */
@@ -43,11 +41,6 @@ img {
   display: none;
   position: relative;
 }
-/* JS에서 .show 붙이면 열리도록 */
-#openedContainer.show {
-  display: block;
-  z-index: 998; /* envelope(2) 아래, papers(999) 위 */
-}
 
 /* ── 첫 번째 종이 ── */
 #firstPaper {
@@ -56,14 +49,41 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.8);
-  width: 100%;
-  max-width: 280px;
+  width: 200px;
   padding: 16px;
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 999; /* envelope 위에 뜨도록 */
+  z-index: 3;
+}
+#firstPaper .paper-content {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transition-delay: 2s;
+}
+#firstPaper .imo-pic {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.initial-text {
+  color: #E0C07B;
+}
+
+/* 첫 번째 종이 애니메이션 */
+@keyframes slideToHeart {
+  from { transform: translate(-50%,-70%) scale(0.8); }
+  to   { transform: translate(-50%,-90%) scale(0.8); }
+}
+@keyframes scaleCenter {
+  from { transform: translate(-50%,-110%) scale(0.8); }
+  to   { transform: translate(-50%,-50%)  scale(1); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
 #firstPaper.show {
   display: block;
@@ -72,36 +92,8 @@ img {
     scaleCenter  1.2s ease-in   forwards 1.5s,
     fadeOut      1.5s ease      forwards 3s;
 }
-#firstPaper .paper-content {
-  opacity: 0;
-  transition: opacity 0.4s ease 2s;
-}
 #firstPaper.show .paper-content {
   opacity: 1;
-}
-#firstPaper .imo-pic {
-  width: 100px;
-  border-radius: 10px;
-  margin: 0 auto 10px;
-}
-.initial-text {
-  color: #E0C07B;
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-/* 첫 번째 종이 애니메이션 */
-@keyframes slideToHeart {
-  from { transform: translate(-50%,-50%) scale(0.8); }
-  to   { transform: translate(-50%,-110%) scale(0.8); }
-}
-@keyframes scaleCenter {
-  from { transform: translate(-50%,-110%) scale(0.8); }
-  to   { transform: translate(-50%,-50%)  scale(1);   }
-}
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to   { opacity: 0; }
 }
 
 /* ── 두 번째 종이 ── */
@@ -118,21 +110,21 @@ img {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
-  z-index: 999; /* envelope 위에 뜨도록 */
-  opacity: 0;
-}
-#secondPaper.show {
-  display: flex;
+  z-index: 3;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.8s ease-out forwards;
-  opacity: 1;
 }
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+#secondPaper.show {
+  display: flex;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* 메시지 + 버튼 */
 #secondPaper .rolling-text {
   font-size: 18px;
   font-weight: bold;
@@ -165,11 +157,10 @@ img {
   padding: 12px;
   text-align: center;
   opacity: 0;
-  z-index: 999; /* envelope 위에 뜨도록 */
   transition: opacity 0.8s ease;
+  z-index: 4;
 }
 #invitation.show {
-  display: block;
   opacity: 1;
 }
 #invitation h3 {
@@ -183,7 +174,7 @@ img {
   width: 80%;
   max-width: 200px;
   max-height: 120px;
-  margin-top: 16px;
+  margin-top: 1px;
   border-radius: 8px;
 }
 
@@ -197,55 +188,27 @@ img {
   font-weight: bold;
 }
 
-/* ── 모바일 전용 (≤480px) ── */
+/* ── 모바일 반응형 (≤480px) ── */
 @media (max-width: 480px) {
-  /* 봉투 이미지 축소 */
   #closedEnvelope,
   #openEnvelopeImg {
     width: 150px;
     transform: translate(-50%,-50%) scale(1.8);
   }
-#firstPaper,
-#secondPaper,
-#invitation {
-  /* 임시 디버깅용 */
-  background: rgba(255, 0, 0, 0.3) !important;
-  border: 2px dashed blue !important;
-}
 
-  /* 첫·두 번째 페이퍼 흐름 모드, show 시에만 노출 */
   #firstPaper,
-  #secondPaper {
-    position: static !important;
-    transform: none !important;
-    display: none !important;
-    width: 100% !important;
-    padding: 12px !important;
-    margin: 16px auto !important;
-    box-sizing: border-box;
-    animation: none !important;
-    opacity: 1 !important;
-    text-align: center;
-  }
-  #firstPaper.show,
-  #secondPaper.show {
-    display: block !important;
-  }
-
-  /* invitation 역시 show 시에만 노출 */
+  #secondPaper,
   #invitation {
     position: static !important;
     transform: none !important;
-    display: none !important;
+    display: block !important;
     width: 100% !important;
-    padding: 12px !important;
-    margin: 16px auto !important;
+    max-width: none;
+    padding: 12px;
+    box-sizing: border-box;
+    margin: 16px auto;
+    animation: none !important;
     opacity: 1 !important;
     text-align: center;
-    animation: none !important;
-    transition: none !important;
-  }
-  #invitation.show {
-    display: block !important;
   }
 }
