@@ -38,10 +38,14 @@ img {
   z-index: 2;
 }
 
-/* ── 열린 컨테이너 (초기 숨김) ── */
+/* ── 열린 컨테이너 ── */
 #openedContainer {
   display: none;
   position: relative;
+}
+/* JS에서 .show 붙이면 열리도록 */
+#openedContainer.show {
+  display: block;
 }
 
 /* ── 첫 번째 종이 ── */
@@ -60,9 +64,19 @@ img {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   z-index: 3;
 }
+#firstPaper.show {
+  display: block;
+  animation:
+    slideToHeart 1.5s ease-out forwards,
+    scaleCenter  1.2s ease-in   forwards 1.5s,
+    fadeOut      1.5s ease      forwards 3s;
+}
 #firstPaper .paper-content {
   opacity: 0;
   transition: opacity 0.4s ease 2s;
+}
+#firstPaper.show .paper-content {
+  opacity: 1;
 }
 #firstPaper .imo-pic {
   width: 100px;
@@ -88,16 +102,6 @@ img {
   from { opacity: 1; }
   to   { opacity: 0; }
 }
-#firstPaper.show {
-  display: block;
-  animation:
-    slideToHeart 1.5s ease-out forwards,
-    scaleCenter  1.2s ease-in   forwards 1.5s,
-    fadeOut      1.5s ease      forwards 3s;
-}
-#firstPaper.show .paper-content {
-  opacity: 1;
-}
 
 /* ── 두 번째 종이 ── */
 #secondPaper {
@@ -116,11 +120,6 @@ img {
   z-index: 3;
   opacity: 0;
 }
-/* 페이드인 */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 #secondPaper.show {
   display: flex;
   flex-direction: column;
@@ -128,6 +127,10 @@ img {
   align-items: center;
   animation: fadeIn 0.8s ease-out forwards;
   opacity: 1;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 #secondPaper .rolling-text {
   font-size: 18px;
@@ -195,14 +198,13 @@ img {
 
 /* ── 모바일 전용 (≤480px) ── */
 @media (max-width: 480px) {
-  /* 봉투 이미지 축소 */
   #closedEnvelope,
   #openEnvelopeImg {
     width: 150px;
     transform: translate(-50%,-50%) scale(1.8);
   }
 
-  /* 첫·두 번째 페이퍼 flow layout, show 시에만 노출 */
+  /* 첫·두 번째 페이퍼 흐름 모드, show 시에만 노출 */
   #firstPaper,
   #secondPaper {
     position: static !important;
@@ -221,10 +223,7 @@ img {
     display: block !important;
   }
 
-  /* 열린 컨테이너 숨김 해제 (필요시 제거) */
-  /* #openedContainer { display: none !important; } */
-
-  /* 초대장도 show 시에만 노출 */
+  /* invitation 역시 show 시에만 노출 */
   #invitation {
     position: static !important;
     transform: none !important;
@@ -236,6 +235,7 @@ img {
     text-align: center;
     animation: none !important;
     transition: none !important;
+    z-index: auto !important;
   }
   #invitation.show {
     display: block !important;
