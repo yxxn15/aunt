@@ -190,20 +190,20 @@ img {
 
 /* ── 모바일 반응형 (≤480px) ── */
 @media (max-width: 480px) {
+  /* 봉투 이미지 축소 */
   #closedEnvelope,
   #openEnvelopeImg {
     width: 150px;
     transform: translate(-50%,-50%) scale(1.8);
   }
 
+  /* 첫·두 번째 페이퍼만 flow 모드, 기본 숨김 */
   #firstPaper,
-  #secondPaper,
-  #invitation {
+  #secondPaper {
     position: static !important;
     transform: none !important;
     display: none !important;
     width: 100% !important;
-    max-width: none;
     padding: 12px;
     box-sizing: border-box;
     margin: 16px auto;
@@ -211,4 +211,17 @@ img {
     opacity: 1 !important;
     text-align: center;
   }
+  /* show 클래스가 붙으면 보이게 */
+  #firstPaper.show,
+  #secondPaper.show {
+    display: block !important;
+  }
+}
+
+/* 초대장은 모바일이든 데스크탑이든 show 시에만 노출 */
+#invitation {
+  display: none !important;
+}
+#invitation.show {
+  display: block !important;
 }
