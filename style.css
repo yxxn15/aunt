@@ -193,25 +193,29 @@ img {
 
 /* ── 모바일 반응형 (≤480px) ── */
 @media (max-width: 480px) {
+  /* 봉투·첫번째·두번째 페이퍼만 static 처리 */
   #closedEnvelope,
-  #openEnvelopeImg {
-    width: 150px;
-    transform: translate(-50%,-50%) scale(1.8);
-  }
-
+  #openEnvelopeImg,
+  #openedContainer,
   #firstPaper,
-  #secondPaper,
-  #invitation {
+  #secondPaper {
     position: static !important;
     transform: none !important;
     display: block !important;
     width: 100% !important;
-    max-width: none;
     padding: 12px;
-    box-sizing: border-box;
     margin: 16px auto;
+    box-sizing: border-box;
     animation: none !important;
     opacity: 1 !important;
     text-align: center;
+  }
+
+  /* invitation 은 기본 display:none; 그대로 두고 .show 시에만 보이게 */
+  #invitation {
+    display: none !important;  
+  }
+  #invitation.show {
+    display: block !important;
   }
 }
