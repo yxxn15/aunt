@@ -201,7 +201,7 @@ img {
   #invitation {
     position: static !important;
     transform: none !important;
-    display: block !important;
+    display: none !important;
     width: 100% !important;
     max-width: none;
     padding: 12px;
