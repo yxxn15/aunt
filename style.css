@@ -79,7 +79,7 @@ img {
 }
 @keyframes scaleCenter {
   from { transform: translate(-50%,-110%) scale(0.8); }
-  to   { transform: translate(-50%,-50%)  scale(1.25); }
+  to   { transform: translate(-50%,-50%)  scale(1); }
 }
 @keyframes fadeOut {
   from { opacity: 1; }
