@@ -46,6 +46,7 @@ img {
 /* JS에서 .show 붙이면 열리도록 */
 #openedContainer.show {
   display: block;
+  z-index: 998; /* envelope(2) 아래, papers(999) 위 */
 }
 
 /* ── 첫 번째 종이 ── */
@@ -62,7 +63,7 @@ img {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  z-index: 3;
+  z-index: 999; /* envelope 위에 뜨도록 */
 }
 #firstPaper.show {
   display: block;
@@ -117,7 +118,7 @@ img {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
-  z-index: 3;
+  z-index: 999; /* envelope 위에 뜨도록 */
   opacity: 0;
 }
 #secondPaper.show {
@@ -164,8 +165,8 @@ img {
   padding: 12px;
   text-align: center;
   opacity: 0;
+  z-index: 999; /* envelope 위에 뜨도록 */
   transition: opacity 0.8s ease;
-  z-index: 4;
 }
 #invitation.show {
   display: block;
@@ -198,6 +199,7 @@ img {
 
 /* ── 모바일 전용 (≤480px) ── */
 @media (max-width: 480px) {
+  /* 봉투 이미지 축소 */
   #closedEnvelope,
   #openEnvelopeImg {
     width: 150px;
@@ -235,7 +237,6 @@ img {
     text-align: center;
     animation: none !important;
     transition: none !important;
-    z-index: auto !important;
   }
   #invitation.show {
     display: block !important;
