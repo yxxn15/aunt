@@ -85,7 +85,7 @@ function startFireworks() {
 
       setTimeout(() => {
         const x0 = Math.random() * window.innerWidth;
-        const y0 = Math.random() * 500;
+        const y0 = Math.random() * (window.innerHeight / 2);
 
         for (let i = 0; i < particleCount; i++) {
           createParticle(i, x0, y0);

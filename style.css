@@ -75,7 +75,7 @@ img {
 /* 첫 번째 종이 애니메이션 */
 @keyframes slideToHeart {
   from { transform: translate(-50%,-70%) scale(0.8); }
-  to   { transform: translate(-50%,-130%) scale(0.8); }
+  to   { transform: translate(-50%,-140%) scale(0.8); }
 }
 @keyframes scaleCenter {
   from { transform: translate(-50%,-110%) scale(1); }
