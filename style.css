@@ -192,6 +192,9 @@ img {
     transform: translate(var(--x), var(--y)) scale(0.5);
   }
 }
+.firework-particle {
+  will-change: transform, opacity;
+}
 
 
 /* 메시지 + 버튼 */
